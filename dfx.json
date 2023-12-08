@@ -1,0 +1,29 @@
+{
+  "canisters": {
+    "gogreen_backend": {
+      "main": "src/gogreen_backend/main.mo",
+      "type": "motoko"
+    },
+    "gogreen_frontend": {
+      "dependencies": [
+        "gogreen_backend"
+      ],
+      "frontend": {
+        "entrypoint": "src/gogreen_frontend/src/index.html"
+      },
+      "source": [
+        "src/gogreen_frontend/assets",
+        "dist/gogreen_frontend/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
