@@ -91,9 +91,24 @@ resetButton.addEventListener('click', async (e) => {
 
     //re-render the results once the points are reset in the backend
     displayResults();
+
+    document.getElementById('click-answer').innerText = "bananas"
     return false;
 }, false);
 
+
+
+/*
+<script>
+  //Select button by id
+  const MyButton = document.getElementById("reset");
+  //Add on click listener for button
+  MyButton.addEventListener('click', function() {
+      //Select (h1) heading by id, and then change it's value to (bananas)
+      document.getElementById('click-answer').innerText = "bananas"
+  })
+</script>
+*/
 
 
 //3. HELPER FUNCTIONS
