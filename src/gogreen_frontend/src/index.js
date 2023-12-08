@@ -27,7 +27,7 @@ const resetButton = document.getElementById('reset');
 
 
 //Note we will use "poll_backend" in this JavaScript code a few times to call the backend
-import { poll_backend } from "../../declarations/poll_backend";
+import { gogreen_backend } from "../../declarations/gogreen_backend";
 
 //1. LOCAL DATA
 const pollResults = {
@@ -49,13 +49,13 @@ document.addEventListener('DOMContentLoaded', async (e) => {
   e.preventDefault();
  
   // Query the question from the backend
-  const question = await poll_backend.getQuestion();
+  const question = await gogreen_backend.getQuestion();
   document.getElementById("question").innerText = question;
 
   //Query the vote counts for each option
   // Example JSON that the frontend will get using the values above
   // [["Motoko","0"],["Python","0"],["Rust","0"],["TypeScript","0"]]
-  const voteCounts = await poll_backend.getVotes();
+  const voteCounts = await gogreen_backend.getVotes();
   updateLocalVoteCounts(voteCounts);
   displayResults();
   return false;
@@ -72,7 +72,7 @@ pollForm.addEventListener('submit', async (e) => {
   const formData = new FormData(pollForm);
   const checkedValue = formData.get("option");
 
-  const updatedVoteCounts = await poll_backend.vote(checkedValue);
+  const updatedVoteCounts = await gogreen_backend.vote(checkedValue);
   console.log("Returning from await...")
   console.log(updatedVoteCounts);
   updateLocalVoteCounts(updatedVoteCounts);
@@ -85,8 +85,8 @@ resetButton.addEventListener('click', async (e) => {
     e.preventDefault();
     
     //Reset the options in the backend
-    await poll_backend.resetVotes();
-    const voteCounts = await poll_backend.getVotes();
+    await gogreen_backend.resetVotes();
+    const voteCounts = await gogreen_backend.getVotes();
     updateLocalVoteCounts(voteCounts);
 
     //re-render the results once the votes are reset in the backend
