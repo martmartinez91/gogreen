@@ -132,7 +132,24 @@
       <h2 id="results-title">Number of points accumulated (GGC)</h2>
       <div id="results"></div>
     </div>
+
+    <h1>Showing image with a click in JavaScript</h1>
+    <button id="show-image-button">Show Image</button>
+    <img id="my-image" src="https://www.tutorialspoint.com/javascript/images/javascript.jpg" class="hidden">
+    <style>
+       .hidden { display: none; }
+       .visible { display: block; }
+    </style>
+    <script>
+       const showImageButton = document.getElementById("show-image-button");
+       const myImage = document.getElementById("my-image");
+       showImageButton.addEventListener("click", () => { 
+          myImage.classList.toggle("visible"); 
+       });
+    </script>
     <button id="reset">Clear Points</button>
+
+
 
 
 </body>
