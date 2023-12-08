@@ -133,19 +133,15 @@
       <div id="results"></div>
     </div>
 
-    <h1>Showing image with a click in JavaScript</h1>
-    <button id="show-image-button">Show Image</button>
-    <img id="my-image" src="coupon.png" height="82" width="82" class="hidden">
-    <style>
-       .hidden { display: none; }
-       .visible { display: block; }
-    </style>
+    <button onClick="showImage()">Button</button>
+    <div id="first" style="height:400px; width:400px; display:none;">
+        <img src="coupon.png"/> 
+    </div>
+      
     <script>
-       const showImageButton = document.getElementById("show-image-button");
-       const myImage = document.getElementById("my-image");
-       showImageButton.addEventListener("click", () => { 
-          myImage.classList.toggle("visible"); 
-       });
+        const showImage = () => {
+            document.getElementById("first").style.display ='block';
+        }
     </script>
 
 
