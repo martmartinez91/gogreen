@@ -92,7 +92,7 @@ resetButton.addEventListener('click', async (e) => {
     //re-render the results once the points are reset in the backend
     displayResults();
 
-    document.getElementById('click-answer').innerText = "bananas"
+    document.getElementById('click-answer').innerText = "Coupon Acquired!!"
     return false;
 }, false);
 
