@@ -15,21 +15,21 @@ import Iter "mo:base/Iter";
 actor {
 
   var question: Text = "Available challenges to choose from";
-  var votes: RBTree.RBTree<Text, Nat> = RBTree.RBTree(Text.compare);
+  var points: RBTree.RBTree<Text, Nat> = RBTree.RBTree(Text.compare);
   var sum = 0;
 
   public query func getQuestion() : async Text { 
     question 
   };
 
-// query the list of entries and votes for each one
+// query the list of entries and points for each one
 // Example: 
 //      * JSON that the frontend will receive using the values above: 
 //      * [["M","0"],["P","0"],["R","0"],["T","0"]]
 
     public query func getPoints() : async [(Text, Nat)] {
     
-        Iter.toArray(votes.entries())
+        Iter.toArray(points.entries())
     
     };
 
@@ -43,36 +43,36 @@ actor {
     
   public func vote(entry: Text) : async [(Text, Nat)] {
 
-    //Check if the entry already has votes.
-    //Note that "votes_for_entry" is of type ?Nat. This is because: 
+    //Check if the entry already has points.
+    //Note that "points_for_entry" is of type ?Nat. This is because: 
     // * If the entry is in the RBTree, the RBTree returns a number.
     // * If the entry is not in the RBTree, the RBTree returns `null` for the new entry.
-    let votes_for_entry :?Nat = votes.get(entry);
+    let points_for_entry :?Nat = points.get(entry);
     
     //Need to be explicit about what to do when it is null or a number so every case is taken care of
-    let current_votes_for_entry : Nat = switch votes_for_entry {
+    let current_points_for_entry : Nat = switch points_for_entry {
       case null 0;
       case (?Nat) Nat;
     };
 
-    //once we have the number of votes, update the votes for the entry
-    votes.put(entry, current_votes_for_entry + 1);
+    //once we have the number of points, update the points for the entry
+    points.put(entry, current_points_for_entry + 1);
 
-    //Return the number of votes as an array (so frontend can display it)
-    Iter.toArray(votes.entries())
+    //Return the number of points as an array (so frontend can display it)
+    Iter.toArray(points.entries())
   };
 
   public func resetPoints() : async [(Text, Nat)] {
-      votes.put("Water", 0);
-      votes.put("Driving", 0);
-      votes.put("Electricity", 0);
-      votes.put("Shopping", 0);
-      Iter.toArray(votes.entries())
+      points.put("Water", 0);
+      points.put("Driving", 0);
+      points.put("Electricity", 0);
+      points.put("Shopping", 0);
+      Iter.toArray(points.entries())
   };
 
   public func resetInd() : async [(Text, Nat)] {
-      votes.put("Electricity", 0);
-      Iter.toArray(votes.entries())
+      points.put("Electricity", 0);
+      Iter.toArray(points.entries())
   };
 
 };

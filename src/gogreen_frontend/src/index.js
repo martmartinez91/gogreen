@@ -89,7 +89,7 @@ resetButton.addEventListener('click', async (e) => {
     const voteCounts = await gogreen_backend.getPoints();
     updateLocalVoteCounts(voteCounts);
 
-    //re-render the results once the votes are reset in the backend
+    //re-render the results once the points are reset in the backend
     displayResults();
     return false;
 }, false);
