@@ -128,27 +128,27 @@
         </form>
       </div>
 
-      <!-- Poll results appear here-->
+      <!-- Results appear here-->
+      <h2 id="click-answer"> </h2>
       <h2 id="results-title">Number of points accumulated (GGC)</h2>
       <div id="results"></div>
     </div>
 
-    <button onClick="showImage()">Button</button>
-    <div id="first" style="height:400px; width:400px; display:none;">
-        <img src="coupon.png"/> 
-    </div>
-      
-    <script>
-        const showImage = () => {
-            document.getElementById("first").style.display ='block';
-        }
-    </script>
-
-
-    <button id="reset">Clear Points</button>
-
+    <button id="reset">Spend Points</button>
 
 
 
 </body>
+
+<script>
+  //Select button by id
+  const MyButton = document.getElementById("reset");
+  //Add on click listener for button
+  MyButton.addEventListener('click', function() {
+      //Select (h1) heading by id, and then change it's value to (bananas)
+      document.getElementById('click-answer').innerText = "bananas"
+  })
+</script>
+
+
 </html>
