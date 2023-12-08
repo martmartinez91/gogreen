@@ -64,7 +64,7 @@ actor {
 
   public func resetVotes() : async [(Text, Nat)] {
       votes.put("Bottle", 0);
-      votes.put("Recycle bin", 0);
+      votes.put("Driving", 0);
       votes.put("Electric car", 0);
       votes.put("Vegetarian food", 0);
       Iter.toArray(votes.entries())

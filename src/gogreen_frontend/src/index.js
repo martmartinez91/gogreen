@@ -31,7 +31,7 @@ import { gogreen_backend } from "../../declarations/gogreen_backend";
 
 //1. LOCAL DATA
 const pollResults = {
-    "Recycle bin": 0,
+    "Driving": 0,
     "Bottle": 0,
     "Electric car": 0,
     "Vegetarian food": 0
@@ -123,7 +123,7 @@ function updateLocalVoteCounts(arrayOfVoteArrays){
     let voteOption = voteArray[0];
     let voteCount = voteArray[1];
     
-    if (voteOption == "Recycle bin"){
+    if (voteOption == "Driving"){
       multiplier = 20;
     }else if (voteOption == "Bottle"){
       multiplier = 5;
