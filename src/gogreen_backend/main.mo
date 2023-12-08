@@ -27,7 +27,7 @@ actor {
 //      * JSON that the frontend will receive using the values above: 
 //      * [["M","0"],["P","0"],["R","0"],["T","0"]]
 
-    public query func getVotes() : async [(Text, Nat)] {
+    public query func getPoints() : async [(Text, Nat)] {
     
         Iter.toArray(votes.entries())
     
@@ -62,16 +62,16 @@ actor {
     Iter.toArray(votes.entries())
   };
 
-  public func resetVotes() : async [(Text, Nat)] {
-      votes.put("Bottle", 0);
+  public func resetPoints() : async [(Text, Nat)] {
+      votes.put("Water", 0);
       votes.put("Driving", 0);
-      votes.put("Electric car", 0);
-      votes.put("Vegetarian food", 0);
+      votes.put("Electricity", 0);
+      votes.put("Shopping", 0);
       Iter.toArray(votes.entries())
   };
 
   public func resetInd() : async [(Text, Nat)] {
-      votes.put("Electric car", 0);
+      votes.put("Electricity", 0);
       Iter.toArray(votes.entries())
   };
 

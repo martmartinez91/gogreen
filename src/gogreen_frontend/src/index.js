@@ -30,11 +30,11 @@ const resetButton = document.getElementById('reset');
 import { gogreen_backend } from "../../declarations/gogreen_backend";
 
 //1. LOCAL DATA
-const pollResults = {
+const storeResults = {
     "Driving": 0,
-    "Bottle": 0,
-    "Electric car": 0,
-    "Vegetarian food": 0
+    "Water": 0,
+    "Electricity": 0,
+    "Shopping": 0
 };
 
 var total = 0;
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
   //Query the vote counts for each option
   // Example JSON that the frontend will get using the values above
   // [["Motoko","0"],["Python","0"],["Rust","0"],["TypeScript","0"]]
-  const voteCounts = await gogreen_backend.getVotes();
+  const voteCounts = await gogreen_backend.getPoints();
   updateLocalVoteCounts(voteCounts);
   displayResults();
   return false;
@@ -85,8 +85,8 @@ resetButton.addEventListener('click', async (e) => {
     e.preventDefault();
     
     //Reset the options in the backend
-    await gogreen_backend.resetVotes();
-    const voteCounts = await gogreen_backend.getVotes();
+    await gogreen_backend.resetPoints();
+    const voteCounts = await gogreen_backend.getPoints();
     updateLocalVoteCounts(voteCounts);
 
     //re-render the results once the votes are reset in the backend
@@ -101,8 +101,8 @@ resetButton.addEventListener('click', async (e) => {
 //Helper vanilla JS function to create the HTML to render the results of the poll
 function displayResults() {
   let resultHTML = '<ul>';
-  for (let key in pollResults) {
-      resultHTML += '<li><strong>' + key + '</strong>: ' + pollResults[key] + '</li>';
+  for (let key in storeResults) {
+      resultHTML += '<li><strong>' + key + '</strong>: ' + storeResults[key] + '</li>';
   }
   resultHTML += '<li><strong>' + "Total" + '</strong>: ' + total + '</li>';
   resultHTML += '</ul>';
@@ -125,17 +125,17 @@ function updateLocalVoteCounts(arrayOfVoteArrays){
     
     if (voteOption == "Driving"){
       multiplier = 20;
-    }else if (voteOption == "Bottle"){
+    }else if (voteOption == "Water"){
       multiplier = 5;
-    }else if (voteOption == "Electric car"){
+    }else if (voteOption == "Electricity"){
       multiplier = 10;
-    }else if (voteOption == "Vegetarian food"){
+    }else if (voteOption == "Shopping"){
       multiplier = 1;
     }
     
     //let aux = number(voteCount)*multiplier;
-    pollResults[voteOption] = Number(voteCount)*multiplier;
-    total = total + pollResults[voteOption];
+    storeResults[voteOption] = Number(voteCount)*multiplier;
+    total = total + storeResults[voteOption];
     //pollTotal = pollTotal + voteCount;
   }
 
